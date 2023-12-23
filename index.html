@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Sockets</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Web Sockets</h1>
     <p>A popular event driven used for 2-ways messages and much more</p>
 
-    <input type="text" name="message" id="message">
-    <button onclick="connectClient()"> Send </button>
-    <p>Server output: </p>
-    <p class="server-msg">
-        Hi
-    </p>
-
+    <input type="text" name="message" id="message" />
+    <button onclick="connectClient()">Send</button>
+    <p>Server output:</p>
+    <p class="server-msg">Hi</p>
 
     <script>
-        function connectClient() {
-            const data = document.getElementById('message').value;
-            console.log(data);
+      function connectClient() {
+        const data = document.getElementById("message").value;
+        console.log(data);
 
-            // inint web sockets
-            const ws = new WebSocket("ws://localhost:8080");
+        // inint web sockets
+        const ws = new WebSocket("ws://localhost:8080");
 
-            ws.addEventListener("open", () => {
-                console.log("Connected to Server");
-                ws.send(data);
-
-            })
-
-
-        }
-        
+        ws.addEventListener("open", () => {
+          console.log("Connected to Server");
+          ws.send(data);
+        });
+        // recieve from web sockets
+        ws.addEventListener("message", ({ data }) => {
+          console.log(data);
+          document.querySelector(".server-msg").innerHTML = data;
+          // console.log(op);
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
