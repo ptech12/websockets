@@ -8,6 +8,6 @@
 2. Make sure to install node.js
 3. open termial inside the server folder and run this command
 ```
-$ node index.js
+$ npm i && node index.js
 ```
 
